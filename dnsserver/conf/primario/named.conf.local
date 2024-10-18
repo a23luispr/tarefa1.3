@@ -6,11 +6,19 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
+key "chavesecreta" {
+	algorithm hmac-sha256;
+	secret "UHJVLtUumRQSP+asa1ewNiNdJH9fySnYOtRUvhfgrH4=";
+};
+
 zone "starwars.lan"{
     type master;
     file "/etc/bind/db.starwars.lan";
+    allow-transfer { key "chavesecreta";};
 };
+
 zone "20.168.192.in-addr.arpa"{
     type master;
     file "/etc/bind/db.20.168.192";
+    allow-transfer { key "chavesecreta";};
 };
